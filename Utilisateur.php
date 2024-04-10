@@ -65,7 +65,30 @@ class Utilisateur {
        
     }
 
-    
+    // Méthode pour ajouter un client dans la base de données
+    public function addUser($nom, $prenom, $email, $mot_de_passe) {
+        try {
+            // Préparation de la requête SQL
+            $sql = "INSERT INTO Utilisateur (nom, prenom, email,  mot_de_passe) VALUES (:nom, :prenom, :email,  :mot_de_passe)";
+            $stmt = $this->connexion->prepare($sql);
+            
+            // Liaison des valeurs avec les paramètres de la requête
+            $stmt->bindParam(':nom', $nom);
+            $stmt->bindParam(':prenom', $prenom);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':mot_de_passe', $mot_de_passe);
+
+            // Exécution de la requête
+            $stmt->execute();
+
+
+        } catch(PDOException $e) {
+            // Gérer les erreurs de requête SQL
+            echo "Erreur : " . $e->getMessage();
+            return false; // Ou une autre gestion d'erreur selon vos besoins
+        }
+    }
+
     
     
 }

@@ -24,12 +24,12 @@
         <div class="col-md-6 ">
             <div class="custom-login-form">
                 <form action="login_session.php" method="POST"> <!-- Correction ici: action pointe vers login_session.php -->
-                <div class="form-group">
+                <div class="form-group ">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope fa-xl"></i></span>
                         </div>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Saisir votre Email" required>
+                        <input type="email" class="form-control " id="email" name="email" placeholder="Email" required>
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-lock fa-xl"></i></span>
                         </div>
-                        <input type="password" class="form-control" id="password" name="mot_de_passe" placeholder="Saisir votre mot de passe" required>
+                        <input type="password" class="form-control" id="password" name="mot_de_passe" placeholder="Mot de passe" required>
                     </div>
                 </div>
 
