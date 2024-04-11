@@ -21,7 +21,8 @@ if(isset($_SESSION['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Tâches</title>
     <!-- Inclure Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Inclure FontAwesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- CSS personnalisé pour Kanban -->
@@ -29,15 +30,22 @@ if(isset($_SESSION['id'])) {
 </head>
 <body>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-            <h1 class="col-md-9">Liste des Tâches</h1>
-            <div class="col-md-3">
-                <button class="btn btn-primary float-right"><a href="ajoutTache.php">Créer une tâche</a> </button>
-            </div>
-    </div>
+    <?php 
+    require_once "header.php";
+    ?>
+        
+        <!-- Contenu principal -->
+        <main class="col-md-9">
+            <div class="row">
+                <h1 class="titre col-md-9">Liste des Tâches</h1>
+                <div class="bouton col-md-3">
+                    <a class="btn float-right" href="#" data-bs-toggle="modal" data-bs-target="#modalCreationTache">Créer une tâche</a>
+                </div>
 
-    <div class="kanban">
+            </div>
+            <div class="kanban">
         <div class="column" id="todo">
             <h2>À faire</h2>
             <?php
@@ -49,13 +57,22 @@ if(isset($_SESSION['id'])) {
                 echo "<div class='card mb-3'>";
                 echo "<div class='card-body'>";
                 echo "<h5 class='card-title'>" . $tache['libelle'] . "</h5>";
-                echo "<p>";
+                echo "<p class='icon'>";
                 // Lien vers la page d'informations de la tâche
-                echo "<a href='detailsTache.php?id=" . $tache['id'] . "'><i class='fas fa-info-circle'></i></a> ";
+                echo "<a href='detailsTache.php?id=" . $tache['id'] . "' title='Détails de la tâche'>";
+                echo "<i class='fas fa-info-circle fa-2x'></i>";
+                echo "</a>";
+
                 // Lien vers la page d'édition de la tâche
-                echo "<a href='updateTache.php?id=" . $tache['id'] . "'><i class='fas fa-edit'></i></a> ";
+                echo "<a href='updateTache.php?id=" . $tache['id'] . "' title='Modifier la tâche'>";
+                echo "<i class='fas fa-edit fa-2x' style='color: #2ECC71;'></i>";
+                echo "</a>";
+
                 // Lien pour supprimer la tâche
-                echo "<a href='deleteTache.php?id=" . $tache['id'] . "' onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');\"><i class='fas fa-trash-alt'></i></a>";
+                echo "<a href='deleteTache.php?id=" . $tache['id'] . "' onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');\" title='Supprimer la tâche'>";
+                echo "<i class='fas fa-trash-alt fa-2x' style='color: red;'></i>";
+                echo "</a>";
+
                 echo "</p>";
                 echo "</div>";
                 echo "</div>";
@@ -75,13 +92,22 @@ if(isset($_SESSION['id'])) {
                 echo "<div class='card mb-3'>";
                 echo "<div class='card-body'>";
                 echo "<h5 class='card-title'>" . $tache['libelle'] . "</h5>";
-                echo "<p>";
-                // Lien vers la page d'informations de la tâche
-                echo "<a href='detailsTache.php?id=" . $tache['id'] . "'><i class='fas fa-info-circle'></i></a> ";
+                echo "<p class='icon'>";
+               // Lien vers la page d'informations de la tâche
+                echo "<a href='detailsTache.php?id=" . $tache['id'] . "' title='Détails de la tâche'>";
+                echo "<i class='fas fa-info-circle fa-2x'></i>";
+                echo "</a>";
+
                 // Lien vers la page d'édition de la tâche
-                echo "<a href='updateTache.php?id=" . $tache['id'] . "'><i class='fas fa-edit'></i></a> ";
+                echo "<a href='updateTache.php?id=" . $tache['id'] . "' title='Modifier la tâche'>";
+                echo "<i class='fas fa-edit fa-2x' style='color: #2ECC71;'></i>";
+                echo "</a>";
+
                 // Lien pour supprimer la tâche
-                echo "<a href='deleteTache.php?id=" . $tache['id'] . "' onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');\"><i class='fas fa-trash-alt'></i></a>";
+                echo "<a href='deleteTache.php?id=" . $tache['id'] . "' onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');\" title='Supprimer la tâche'>";
+                echo "<i class='fas fa-trash-alt fa-2x' style='color: red;'></i>";
+                echo "</a>";
+
                 echo "</p>";
                 echo "</div>";
                 echo "</div>";
@@ -102,13 +128,22 @@ if(isset($_SESSION['id'])) {
                 echo "<div class='card mb-3'>";
                 echo "<div class='card-body'>";
                 echo "<h5 class='card-title'>" . $tache['libelle'] . "</h5>";
-                echo "<p>";
-                // Lien vers la page d'informations de la tâche
-                echo "<a href='detailsTache.php?id=" . $tache['id'] . "'><i class='fas fa-info-circle'></i></a> ";
+                echo "<p class='icon'>";
+               // Lien vers la page d'informations de la tâche
+                echo "<a href='detailsTache.php?id=" . $tache['id'] . "' title='Détails de la tâche'>";
+                echo "<i class='fas fa-info-circle fa-2x'></i>";
+                echo "</a>";
+
                 // Lien vers la page d'édition de la tâche
-                echo "<a href='updateTache.php?id=" . $tache['id'] . "'><i class='fas fa-edit'></i></a> ";
+                echo "<a href='updateTache.php?id=" . $tache['id'] . "' title='Modifier la tâche'>";
+                echo "<i class='fas fa-edit fa-2x' style='color: #2ECC71;'></i>";
+                echo "</a>";
+
                 // Lien pour supprimer la tâche
-                echo "<a href='deleteTache.php?id=" . $tache['id'] . "' onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');\"><i class='fas fa-trash-alt'></i></a>";
+                echo "<a href='deleteTache.php?id=" . $tache['id'] . "' onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');\" title='Supprimer la tâche'>";
+                echo "<i class='fas fa-trash-alt fa-2x' style='color: red;'></i>";
+                echo "</a>";
+
                 echo "</p>";
                 echo "</div>";
                 echo "</div>";
@@ -117,14 +152,31 @@ if(isset($_SESSION['id'])) {
         </div>
 
     </div>
+        </main>
+    </div>
 </div>
 
-<!-- Inclure Bootstrap JS (si nécessaire) -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<!-- Inclure FontAwesome JS (si nécessaire) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-<!-- JavaScript personnalisé pour Kanban -->
-<script src="home.js"></script>
+<div class="modal fade" id="modalCreationTache">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Créer une Tache</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <?php require_once "ajoutTache.php" ?>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+
+
 
 </body>
 </html>
