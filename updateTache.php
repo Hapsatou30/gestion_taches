@@ -38,10 +38,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="update.css">
     <!-- Inclure Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+  .form-control{
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--couleur-positive);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 20px;
+    height: 50px;
+}
+
+button[type="submit"] {
+    background-color: var(--couleur-principale); 
+    border-color: var(--couleur-fond); 
+    color:var(--couleur-fond);
+    font-family: Roboto;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 60px;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--couleur-positive);
+    color:var(--couleur-fond);
+    font-size: 24px;
+    font-weight: bold;
+}
+</style>
 </head>
 <body>
 <div class="container">
-    <h1>Mettre à jour une tâche</h1>
+    <div class="titre"><h1 >Mettre à jour une tâche</h1></div>
     <?php
     // Récupérer l'ID de la tâche à partir de la requête GET
     $taskId = $_GET['id'];
@@ -89,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </select>
         </div>
         <input type="hidden" name="taskId" value="<?php echo $taskId; ?>"> <!-- Ajoutez un champ caché pour stocker l'ID de la tâche -->
-        <button type="submit" class="btn btn-primary">Mettre à jour la tâche</button>
+        <button type="submit" class="btn ">Mettre à jour la tâche</button>
     </form>
 </div>
 

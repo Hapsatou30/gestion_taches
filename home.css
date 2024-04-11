@@ -14,7 +14,8 @@
   }
 
   .row h1{
-    font-size: 40px;
+    color: var(--couleur-fond);
+    font-size: 50px;
     font-family:var(--police-secondaire);
     font-weight: 600; 
     margin-bottom: 5%;
@@ -36,9 +37,17 @@
     font-weight: 600;
     font-size: 24px;
 }
+main{
+    background: linear-gradient(rgba(1, 1, 15, 0.322), rgba(6, 6, 44, 0.582) ), url(./images/point-vue-liste-controle_144316-3107.avif);
+    background-size: cover;
+    background-position: center; 
+    margin: 0;
+    padding: 0;
+}
 .kanban {
     display: flex;
     justify-content: space-between;
+   
 }
 
 .column {
