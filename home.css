@@ -1,0 +1,26 @@
+.kanban {
+    display: flex;
+    justify-content: space-between;
+}
+
+.column {
+    flex: 1;
+    margin: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.column h2 {
+    margin-bottom: 10px;
+}
+
+.card {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+}

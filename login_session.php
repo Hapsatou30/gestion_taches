@@ -8,15 +8,15 @@ $mot_de_passe = isset($_POST['mot_de_passe']) ? $_POST['mot_de_passe'] : '';
 
 // Vérifier si les champs email et mot_de_passe ne sont pas vides
 if(empty($email) || empty($mot_de_passe)) {
-    header('location: login.php?error=veuillez saisir votre email et mot de passe');
+    echo "<script>alert('Veuillez saisir votre email et mot de passe'); window.location='login.php?error=veuillez saisir votre email et mot de passe';</script>";
     exit;
 }
 
 // Préparer et exécuter la requête SQL de vérification
-$sql = "SELECT * FROM Utilisateur WHERE email =:email AND mot_de_passe=:mot_de_passe";
+$sql = "SELECT * FROM Utilisateur WHERE email = :email AND mot_de_passe = :mot_de_passe";
 $stmt = $connexion->prepare($sql);
 $stmt->bindParam(":email", $email);
-$stmt->bindParam(":mot_de_passe",$mot_de_passe);
+$stmt->bindParam(":mot_de_passe", $mot_de_passe);
 $stmt->execute();
 $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -31,14 +31,12 @@ if ($resultat) {
     $_SESSION['nom'] = $resultat['nom'];
     $_SESSION['email'] = $resultat['email'];
     $_SESSION['logged'] = true;
-     
-    
-    
+
     header('Location: home.php'); // Redirigez l'utilisateur vers la page d'accueil après la connexion
     exit;
 } else {
-    // Utilisateur non trouvé, rediriger avec un message d'erreur
-    header('location: login.php?error=email ou mot de passe incorrect');
+    // Utilisateur non trouvé, afficher un message d'erreur avec une alerte en JavaScript
+    echo "<script>alert('Utilisateur non trouvé, rediriger avec un message d\'erreur'); window.location='index.php?error=email ou mot de passe incorrect';</script>";
     exit;
 }
 
