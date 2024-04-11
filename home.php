@@ -51,7 +51,7 @@ if(isset($_SESSION['id'])) {
                 echo "<h5 class='card-title'>" . $tache['libelle'] . "</h5>";
                 echo "<p>";
                 // Lien vers la page d'informations de la tâche
-                echo "<a href='detailsache.php?id=" . $tache['id'] . "'><i class='fas fa-info-circle'></i></a> ";
+                echo "<a href='detailsTache.php?id=" . $tache['id'] . "'><i class='fas fa-info-circle'></i></a> ";
                 // Lien vers la page d'édition de la tâche
                 echo "<a href='updateTache.php?id=" . $tache['id'] . "'><i class='fas fa-edit'></i></a> ";
                 // Lien pour supprimer la tâche
@@ -77,7 +77,7 @@ if(isset($_SESSION['id'])) {
                 echo "<h5 class='card-title'>" . $tache['libelle'] . "</h5>";
                 echo "<p>";
                 // Lien vers la page d'informations de la tâche
-                echo "<a href='detailsache.php?id=" . $tache['id'] . "'><i class='fas fa-info-circle'></i></a> ";
+                echo "<a href='detailsTache.php?id=" . $tache['id'] . "'><i class='fas fa-info-circle'></i></a> ";
                 // Lien vers la page d'édition de la tâche
                 echo "<a href='updateTache.php?id=" . $tache['id'] . "'><i class='fas fa-edit'></i></a> ";
                 // Lien pour supprimer la tâche
@@ -104,7 +104,7 @@ if(isset($_SESSION['id'])) {
                 echo "<h5 class='card-title'>" . $tache['libelle'] . "</h5>";
                 echo "<p>";
                 // Lien vers la page d'informations de la tâche
-                echo "<a href='detailsache.php?id=" . $tache['id'] . "'><i class='fas fa-info-circle'></i></a> ";
+                echo "<a href='detailsTache.php?id=" . $tache['id'] . "'><i class='fas fa-info-circle'></i></a> ";
                 // Lien vers la page d'édition de la tâche
                 echo "<a href='updateTache.php?id=" . $tache['id'] . "'><i class='fas fa-edit'></i></a> ";
                 // Lien pour supprimer la tâche

@@ -186,7 +186,21 @@ class Tache {
             echo "Erreur lors de la suppression de la tâche : " . $e->getMessage();
         }
     }
-    
+    // Méthode pour récupérer les détails d'une tâche par son ID
+    public function TacheParId($taskId) {
+        try {
+            $sql = "SELECT * FROM Tache WHERE id = ?";
+            $stmt = $this->connexion->prepare($sql);
+            $stmt->bindParam(1, $taskId, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (Exception $e) {
+            throw new Exception("Erreur lors de la récupération des détails de la tâche : " . $e->getMessage());
+        }
+}
+
+
     
 }
 
