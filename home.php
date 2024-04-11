@@ -31,7 +31,7 @@ if(isset($_SESSION['id'])) {
     <div class="row">
             <h1 class="col-md-9">Liste des Tâches</h1>
             <div class="col-md-3">
-                <button class="btn btn-primary float-right">Créer une tâche</button>
+                <button class="btn btn-primary float-right"><a href="ajoutTache.php">Créer une tâche</a> </button>
             </div>
     </div>
 

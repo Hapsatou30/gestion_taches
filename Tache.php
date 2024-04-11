@@ -78,7 +78,7 @@ class Tache {
     public function creerTache($libelle, $description, $dateEcheance, $priorite,$etat, $idUtilisateur) {
         try {
             // Requête SQL pour insérer une nouvelle tâche dans la base de données
-            $sql = "INSERT INTO Tache (libelle, description, date_echeance, priorite,etat, id_utilisateur) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO Tache (libelle, description, date_echeance, priorite,etat, id_utilisateur) VALUES (?, ?, ?, ?, ?,?)";
             
             // Préparation de la requête
             $stmt = $this->connexion->prepare($sql);
