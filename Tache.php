@@ -101,138 +101,70 @@ class Tache {
         }
     }
 
-    //la liste des taches
-    // public function afficherListeTaches($idUtilisateur) {
-    //     try {
-    //         // Requête SQL pour sélectionner les tâches d'un utilisateur donné
-    //         $sql = "SELECT * FROM Tache WHERE id_utilisateur = ?";
-            
-    //         // Préparation de la requête
-    //         $stmt = $this->connexion->prepare($sql);
-    
-    //         // Liaison du paramètre
-    //         $stmt->bindParam(1, $idUtilisateur);
-    
-    //         // Exécution de la requête
-    //         $stmt->execute();
-    
-    //         // Récupération des résultats dans un tableau associatif
-    //         $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    //         // Retourne le tableau de résultats
-    //         return $resultats;
-    //     } catch (PDOException $e) {
-    //         // En cas d'erreur, affiche le message d'erreur
-    //         echo "Erreur lors de l'affichage de la liste des tâches : " . $e->getMessage();
-            
-    //     }
-    // }
-    
-
-    // //liste des taches en cours
-    // public function afficherTachesEnCours($idUtilisateur) {
-    //     try {
-    //         // Requête SQL pour sélectionner les tâches en cours d'un utilisateur donné
-    //         $sql = "SELECT * FROM Tache WHERE id_utilisateur = ? AND etat = 'en cours'";
-            
-    //         // Préparation de la requête
-    //         $stmt = $this->connexion->prepare($sql);
-    
-    //         // Liaison du paramètre
-    //         $stmt->bindParam(1, $idUtilisateur);
-    
-    //         // Exécution de la requête
-    //         $stmt->execute();
-    
-    //         // Récupération des résultats dans un tableau associatif
-    //         $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    
-    //         // Retourne le tableau de résultats
-    //         return $resultats;
-    //     } catch (PDOException $e) {
-    //         // En cas d'erreur, affiche le message d'erreur
-    //         echo "Erreur lors de l'affichage des tâches en cours : " . $e->getMessage();
-            
-    //     }
-    // }
-
     // //liste des taches à faire
 
-    // public function afficherTachesEnAttente($idUtilisateur) {
-    //     try {
-    //         // Requête SQL pour sélectionner les tâches en attente d'un utilisateur donné
-    //         $sql = "SELECT * FROM Tache WHERE id_utilisateur = ? AND etat = 'à faire'";
-            
-    //         // Préparation de la requête
-    //         $stmt = $this->connexion->prepare($sql);
-    
-    //         // Liaison du paramètre
-    //         $stmt->bindParam(1, $idUtilisateur);
-    
-    //         // Exécution de la requête
-    //         $stmt->execute();
-    
-    //         // Récupération des résultats dans un tableau associatif
-    //         $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    //         // Retourne le tableau de résultats
-    //         return $resultats;
-    //     } catch (PDOException $e) {
-    //         // En cas d'erreur, affiche le message d'erreur
-    //         echo "Erreur lors de l'affichage des tâches en attente : " . $e->getMessage();
-            
-    //     }
-    // }
-    
-    // //liste des taches terminées
-
-    // public function afficherTachesTerminees($idUtilisateur) {
-    //     try {
-    //         // Requête SQL pour sélectionner les tâches terminées d'un utilisateur donné
-    //         $sql = "SELECT * FROM Tache WHERE id_utilisateur = ? AND etat = 'terminée'";
-            
-    //         // Préparation de la requête
-    //         $stmt = $this->connexion->prepare($sql);
-    
-    //         // Liaison du paramètre
-    //         $stmt->bindParam(1, $idUtilisateur);
-    
-    //         // Exécution de la requête
-    //         $stmt->execute();
-    
-    //         // Récupération des résultats dans un tableau associatif
-    //         $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //         // Retourne le tableau de résultats
-    //         return $resultats;
-    //     } catch (PDOException $e) {
-    //         // En cas d'erreur, affiche le message d'erreur
-    //         echo "Erreur lors de l'affichage des tâches terminées : " . $e->getMessage();
-            
-    //     }
-    // }
-    
-    //methode pour modifier l'etat d'une tache
-    public function modifierEtatTache($idTache, $nouvelEtat) {
+    public function afficherTachesEnAttente($idUtilisateur) {
         try {
-            // Requête SQL pour mettre à jour l'état d'une tâche
-            $sql = "UPDATE Tache SET etat = ? WHERE id = ?";
-            
-            // Préparation de la requête
+            // Requête SQL pour sélectionner les tâches à faire de l'utilisateur actuel
+            $sql = "SELECT * FROM Tache WHERE etat = 'à faire' AND id_utilisateur = ?";
             $stmt = $this->connexion->prepare($sql);
-    
-            // Liaison des paramètres
-            $stmt->bindParam(1, $nouvelEtat);
-            $stmt->bindParam(2, $idTache);
-    
-            // Exécution de la requête
-            $stmt->execute();
+            $stmt->execute([$idUtilisateur]);
+            $taches_todo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $taches_todo;
+
         } catch (PDOException $e) {
-            // En cas d'erreur, affiche le message d'erreur
-            echo "Erreur lors de la modification de l'état de la tâche : " . $e->getMessage();
-            
+            // En cas d'erreur, affichez le message d'erreur
+            echo "Erreur lors de la récupération des tâches à faire : " . $e->getMessage();
         }
     }
+    
+    public function afficherTachesEnCours($idUtilisateur) {
+        try {
+            // Requête SQL pour sélectionner les tâches en cours de l'utilisateur actuel
+            $sql = "SELECT * FROM Tache WHERE etat = 'en cours' AND id_utilisateur = ?";
+            $stmt = $this->connexion->prepare($sql);
+            $stmt->execute([$idUtilisateur]);
+            $taches_en_cours = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $taches_en_cours;
+    
+        } catch (PDOException $e) {
+            // En cas d'erreur, affichez le message d'erreur
+            echo "Erreur lors de la récupération des tâches en cours : " . $e->getMessage();
+        }
+    }
+    public function afficherTachesTerminees($idUtilisateur) {
+        try {
+            // Requête SQL pour sélectionner les tâches terminées de l'utilisateur actuel
+            $sql = "SELECT * FROM Tache WHERE etat = 'terminée' AND id_utilisateur = ?";
+            $stmt = $this->connexion->prepare($sql);
+            $stmt->execute([$idUtilisateur]);
+            $taches_terminees = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $taches_terminees;
+    
+        } catch (PDOException $e) {
+            // En cas d'erreur, affichez le message d'erreur
+            echo "Erreur lors de la récupération des tâches terminées : " . $e->getMessage();
+        }
+    }
+   
+         // Méthode pour mettre à jour une tâche
+    public function mettreAJourTache($taskId, $libelle, $description, $dateEcheance, $priorite, $etat) {
+        try {
+            $sql = "UPDATE Tache SET libelle=:libelle, description=:description, date_echeance=:date_echeance, priorite=:priorite, etat=:etat WHERE id=:id";
+            $stmt = $this->connexion->prepare($sql);
+            $stmt->bindParam(':libelle', $libelle);
+            $stmt->bindParam(':description', $description);
+            $stmt->bindParam(':date_echeance', $dateEcheance);
+            $stmt->bindParam(':priorite', $priorite);
+            $stmt->bindParam(':etat', $etat);
+            $stmt->bindParam(':id', $taskId);
+            $stmt->execute();
+            
+        } catch (Exception $e) {
+            throw new Exception("Erreur lors de la mise à jour de la tâche : " . $e->getMessage());
+        }
+    }
+    
 
     //supprimer une tache
 

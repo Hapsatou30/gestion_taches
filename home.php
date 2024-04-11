@@ -1,4 +1,6 @@
 <?php
+// Inclure le fichier de configuration de la base de données
+require_once 'config.php';
 // Démarrez ou reprenez la session
 session_start();
 
@@ -39,81 +41,81 @@ if(isset($_SESSION['id'])) {
         <div class="column" id="todo">
             <h2>À faire</h2>
             <?php
-            // Inclure le fichier de configuration de la base de données
-            require_once 'config.php';
+            // Récupérer les tâches à faire
+            $taches_todo = $tache->afficherTachesEnAttente($idUtilisateur);
 
-            try {
-                // Requête SQL pour sélectionner les tâches à faire de l'utilisateur actuel
-                $sql = "SELECT * FROM Tache WHERE etat = 'à faire' AND id_utilisateur = ?";
-                $stmt = $connexion->prepare($sql);
-                $stmt->execute([$idUtilisateur]);
-                $taches_todo = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                // Afficher les tâches à faire
-                foreach ($taches_todo as $tache) {
-                    echo "<div class='card mb-3'>";
-                    echo "<div class='card-body'>";
-                    echo "<h5 class='card-title'>" . $tache['libelle'] . "</h5>";
-                    echo "<p><i class='fas fa-info-circle'></i> <i class='fas fa-edit'></i>  <i class='fas fa-trash-alt'></i> </p>";
-                    echo "</div>";
-                    echo "</div>";
-                }
-            } catch (PDOException $e) {
-                // En cas d'erreur, affichez le message d'erreur
-                echo "Erreur lors de la récupération des tâches à faire : " . $e->getMessage();
+            // Afficher les tâches à faire
+            foreach ($taches_todo as $tache) {
+                echo "<div class='card mb-3'>";
+                echo "<div class='card-body'>";
+                echo "<h5 class='card-title'>" . $tache['libelle'] . "</h5>";
+                echo "<p>";
+                // Lien vers la page d'informations de la tâche
+                echo "<a href='detailsache.php?id=" . $tache['id'] . "'><i class='fas fa-info-circle'></i></a> ";
+                // Lien vers la page d'édition de la tâche
+                echo "<a href='updateTache.php?id=" . $tache['id'] . "'><i class='fas fa-edit'></i></a> ";
+                // Lien pour supprimer la tâche
+                echo "<a href='deleteTache.php?id=" . $tache['id'] . "'><i class='fas fa-trash-alt'></i></a>";
+                echo "</p>";
+                echo "</div>";
+                echo "</div>";
             }
             ?>
         </div>
-        <div class="column" id="inProgress">
+        <div class="column" id="inprogress">
             <h2>En cours</h2>
             <?php
-            try {
-                // Requête SQL pour sélectionner les tâches en cours de l'utilisateur actuel
-                $sql = "SELECT * FROM Tache WHERE etat = 'en cours' AND id_utilisateur = ?";
-                $stmt = $connexion->prepare($sql);
-                $stmt->execute([$idUtilisateur]);
-                $taches_inProgress = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $tache = new Tache($connexion, "Acheter des fournitures de bureau", "Acheter des stylos, des cahiers, etc.", "2024-04-30", "Haute", "En cours", 1);
+   
+            // Récupérer les tâches en cours
+            $taches_en_cours = $tache->afficherTachesEnCours($idUtilisateur);
 
-                // Afficher les tâches en cours
-                foreach ($taches_inProgress as $tache) {
-                    echo "<div class='card mb-3'>";
-                    echo "<div class='card-body'>";
-                    echo "<h5 class='card-title'>" . $tache['libelle'] . "</h5>";
-                    echo "<p><i class='fas fa-info-circle'></i>  <i class='fas fa-edit'></i>  <i class='fas fa-trash-alt'></i> </p>";
-                    echo "</div>";
-                    echo "</div>";
-                }
-            } catch (PDOException $e) {
-                // En cas d'erreur, affichez le message d'erreur
-                echo "Erreur lors de la récupération des tâches en cours : " . $e->getMessage();
+            // Afficher les tâches en cours
+            foreach ($taches_en_cours as $tache) {
+                echo "<div class='card mb-3'>";
+                echo "<div class='card-body'>";
+                echo "<h5 class='card-title'>" . $tache['libelle'] . "</h5>";
+                echo "<p>";
+                // Lien vers la page d'informations de la tâche
+                echo "<a href='detailsache.php?id=" . $tache['id'] . "'><i class='fas fa-info-circle'></i></a> ";
+                // Lien vers la page d'édition de la tâche
+                echo "<a href='updateTache.php?id=" . $tache['id'] . "'><i class='fas fa-edit'></i></a> ";
+                // Lien pour supprimer la tâche
+                echo "<a href='deleteTache.php?id=" . $tache['id'] . "'><i class='fas fa-trash-alt'></i></a>";
+                echo "</p>";
+                echo "</div>";
+                echo "</div>";
             }
             ?>
         </div>
-        <div class="column" id="done">
-            <h2>Terminé</h2>
+
+        <div class="column" id="completed">
+            <h2>Terminées</h2>
             <?php
-            try {
-                // Requête SQL pour sélectionner les tâches terminées de l'utilisateur actuel
-                $sql = "SELECT * FROM Tache WHERE etat = 'terminée' AND id_utilisateur = ?";
-                $stmt = $connexion->prepare($sql);
-                $stmt->execute([$idUtilisateur]);
-                $taches_done = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $tache = new Tache($connexion, "Acheter des fournitures de bureau", "Acheter des stylos, des cahiers, etc.", "2024-04-30", "Haute", "En cours", 1);
+   
+            // Récupérer les tâches terminées
+            $taches_terminees = $tache->afficherTachesTerminees($idUtilisateur);
 
-                // Afficher les tâches terminées
-                foreach ($taches_done as $tache) {
-                    echo "<div class='card mb-3'>";
-                    echo "<div class='card-body'>";
-                    echo "<h5 class='card-title'>" . $tache['libelle'] . "</h5>";
-                    echo "<p><i class='fas fa-info-circle'></i> <i class='fas fa-edit'></i> <i class='fas fa-trash-alt'></i> </p>";
-                    echo "</div>";
-                    echo "</div>";
-                }
-            } catch (PDOException $e) {
-                // En cas d'erreur, affichez le message d'erreur
-                echo "Erreur lors de la récupération des tâches terminées : " . $e->getMessage();
+            // Afficher les tâches terminées
+            foreach ($taches_terminees as $tache) {
+                echo "<div class='card mb-3'>";
+                echo "<div class='card-body'>";
+                echo "<h5 class='card-title'>" . $tache['libelle'] . "</h5>";
+                echo "<p>";
+                // Lien vers la page d'informations de la tâche
+                echo "<a href='detailsache.php?id=" . $tache['id'] . "'><i class='fas fa-info-circle'></i></a> ";
+                // Lien vers la page d'édition de la tâche
+                echo "<a href='updateTache.php?id=" . $tache['id'] . "'><i class='fas fa-edit'></i></a> ";
+                // Lien pour supprimer la tâche
+                echo "<a href='deleteTache.php?id=" . $tache['id'] . "'><i class='fas fa-trash-alt'></i></a>";
+                echo "</p>";
+                echo "</div>";
+                echo "</div>";
             }
             ?>
         </div>
+
     </div>
 </div>
 
