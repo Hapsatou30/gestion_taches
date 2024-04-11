@@ -55,7 +55,7 @@ if(isset($_SESSION['id'])) {
                 // Lien vers la page d'édition de la tâche
                 echo "<a href='updateTache.php?id=" . $tache['id'] . "'><i class='fas fa-edit'></i></a> ";
                 // Lien pour supprimer la tâche
-                echo "<a href='deleteTache.php?id=" . $tache['id'] . "'><i class='fas fa-trash-alt'></i></a>";
+                echo "<a href='deleteTache.php?id=" . $tache['id'] . "' onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');\"><i class='fas fa-trash-alt'></i></a>";
                 echo "</p>";
                 echo "</div>";
                 echo "</div>";
@@ -81,7 +81,7 @@ if(isset($_SESSION['id'])) {
                 // Lien vers la page d'édition de la tâche
                 echo "<a href='updateTache.php?id=" . $tache['id'] . "'><i class='fas fa-edit'></i></a> ";
                 // Lien pour supprimer la tâche
-                echo "<a href='deleteTache.php?id=" . $tache['id'] . "'><i class='fas fa-trash-alt'></i></a>";
+                echo "<a href='deleteTache.php?id=" . $tache['id'] . "' onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');\"><i class='fas fa-trash-alt'></i></a>";
                 echo "</p>";
                 echo "</div>";
                 echo "</div>";
@@ -108,7 +108,7 @@ if(isset($_SESSION['id'])) {
                 // Lien vers la page d'édition de la tâche
                 echo "<a href='updateTache.php?id=" . $tache['id'] . "'><i class='fas fa-edit'></i></a> ";
                 // Lien pour supprimer la tâche
-                echo "<a href='deleteTache.php?id=" . $tache['id'] . "'><i class='fas fa-trash-alt'></i></a>";
+                echo "<a href='deleteTache.php?id=" . $tache['id'] . "' onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');\"><i class='fas fa-trash-alt'></i></a>";
                 echo "</p>";
                 echo "</div>";
                 echo "</div>";
