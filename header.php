@@ -20,17 +20,18 @@
             <nav aria-label="Barre de navigation">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="home.php" aria-current="page">Accueil</a>
+                        <a class="nav-link " href="home.php" aria-current="page">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Profil</a>
+                        <a class="nav-link active" href="profil.php">Profil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Paramètres</a>
+                        <a class="nav-link" href="logout.php">Déconnexion</a>
                     </li>
                 </ul>
             </nav>
 
         </aside>
+        
 </body>
 </html>
