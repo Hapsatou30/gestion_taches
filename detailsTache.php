@@ -40,7 +40,7 @@ try {
      echo "<i class='fas fa-trash-alt fa-2x' style='color: red;'></i>";
      echo "</a>";
      echo "</p>";
-     echo "<a href='javascript:history.go(-1)' class='btn'>Retour</a>"; 
+     echo "<a href='home.php' class='btn'>Retour</a>"; 
     echo "</div>";
     echo "</div>";
     echo "</div>";

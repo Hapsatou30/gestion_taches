@@ -93,6 +93,9 @@ class Tache {
     
             // Exécution de la requête
             $stmt->execute();
+            // Rediriger l'utilisateur vers une autre page après la création de la tâche
+    header("Location: home.php");
+    exit();
     
         } catch (PDOException $e) {
             // En cas d'erreur, affiche le message d'erreur

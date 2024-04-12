@@ -1,5 +1,37 @@
 
 
+<?php
+// Initialisation du tableau des erreurs
+$erreurs = array();
+
+// Vérification des données soumises
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validation du prénom
+    if (empty($_POST['prenom'])) {
+        $erreurs['prenom'] = "Le prénom est requis.";
+    } elseif (!preg_match("/^[a-zA-ZÀ-ÿ\- ]*$/", $_POST['prenom'])) {
+        $erreurs['prenom'] = "Le prénom ne peut contenir que des lettres et des espaces.";
+    }
+
+    // Validation du nom
+    if (empty($_POST['nom'])) {
+        $erreurs['nom'] = "Le nom est requis.";
+    } elseif (!preg_match("/^[a-zA-ZÀ-ÿ\- ]*$/", $_POST['nom'])) {
+        $erreurs['nom'] = "Le nom ne peut contenir que des lettres et des espaces.";
+    }
+
+    // Validation de l'email
+    if (empty($_POST['email'])) {
+        $erreurs['email'] = "L'email est requis.";
+    } elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        $erreurs['email'] = "L'email n'est pas valide.";
+    }
+
+    
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

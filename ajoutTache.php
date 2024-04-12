@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 // Vérifiez si l'utilisateur est connecté
 if (!isset($_SESSION['id'])) {
     // Redirigez l'utilisateur vers la page de connexion s'il n'est pas connecté
@@ -25,14 +25,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Appeler la méthode creerTache pour créer une nouvelle tâche
     $tache->creerTache($libelle, $description, $dateEcheance, $priorite, $etat, $idUtilisateur);
 
-    // Rediriger l'utilisateur vers une autre page après la création de la tâche
-    header("Location: home.php");
-    exit();
+    
 }
 ?>
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une tâche</title>
+    <link rel="stylesheet" href="update.css">
+    <!-- Inclure Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+</head>
+<body>
+    <div class="container">
+    <div class="titre"><h1 >Créer une tâche</h1></div>
     <form method="post" action="">
         <div class="form-group">
             <label for="libelle">Libellé :</label>
@@ -60,12 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <style>
 
-label{
-    font-size: 20px;
-    font-family:Roboto;
-    color: var(--couleur--text);
-    font-weight: bold;
-}
+
 .form-control {
     padding: 12px 20px;
     font-size: 18px;
@@ -101,3 +107,7 @@ button[type="submit"]:hover {
 </style>
 
 
+
+    </div>
+</body>
+</html>

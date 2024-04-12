@@ -41,7 +41,7 @@ if(isset($_SESSION['id'])) {
             <div class="row">
                 <h1 class="titre col-md-9">Liste des Tâches</h1>
                 <div class="bouton col-md-3">
-                    <a class="btn float-right" href="#" data-bs-toggle="modal" data-bs-target="#modalCreationTache">Créer une tâche</a>
+                    <a class="btn float-right" href="ajoutTache.php" >Créer une tâche</a>
                 </div>
 
             </div>
@@ -156,25 +156,11 @@ if(isset($_SESSION['id'])) {
     </div>
 </div>
 
-<div class="modal fade" id="modalCreationTache">
-<div class="modal-dialog modal-lg">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Créer une Tache</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <?php require_once "ajoutTache.php" ?>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-        </div>
-    </div>
-</div>
 
 
 
 </div>
+
 
 
 
