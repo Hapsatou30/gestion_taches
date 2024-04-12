@@ -1,6 +1,5 @@
 <?php
-// Démarrez ou reprenez la session
-session_start();
+
 
 // Vérifiez si l'utilisateur est connecté
 if (!isset($_SESSION['id'])) {
@@ -33,19 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créer une tâche</title>
-    <!-- Inclure Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
 
-<div class="container">
-    <h1>Créer une tâche</h1>
     <form method="post" action="">
         <div class="form-group">
             <label for="libelle">Libellé :</label>
@@ -70,7 +57,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Ajoutez d'autres champs selon vos besoins -->
         <button type="submit" class="btn btn-primary">Créer la tâche</button>
     </form>
-</div>
 
-</body>
-</html>
+<style>
+
+label{
+    font-size: 20px;
+    font-family:Roboto;
+    color: var(--couleur--text);
+    font-weight: bold;
+}
+.form-control {
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--couleur-positive); /* Assurez-vous de définir la variable --couleur-positive */
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 20px;
+    height: 50px;
+}
+
+
+button[type="submit"] {
+    background-color: var(--couleur-principale); 
+    border-color: var(--couleur-fond); 
+    font-family: Roboto;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 60px;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--couleur-positive);
+    color:var(--couleur-fond);
+    font-size: 24px;
+    font-weight: bold;
+}
+</style>
+
+
